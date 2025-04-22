@@ -1,0 +1,61 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Icon?
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.*.sw?
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Backup files
+*.bak
+*.backup
+*~
+*.backup.*
+*.old
+*.orig
+
+# Custom files that might contain sensitive information
+config/secrets/
+
