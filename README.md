@@ -18,16 +18,19 @@ This dotfiles repository includes configurations for:
 To install these dotfiles, follow these steps:
 
 1. Clone this repository:
+
    ```bash
-   git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+   git clone git@github.com:nhlongnguyen/dotfiles.git ~/dotfiles
    ```
 
 2. Navigate to the dotfiles directory:
+
    ```bash
    cd ~/dotfiles
    ```
 
 3. Run the installation script:
+
    ```bash
    chmod +x scripts/install.sh
    ./scripts/install.sh
@@ -41,11 +44,13 @@ To install these dotfiles, follow these steps:
 ## What's Included
 
 ### Zsh Configuration
+
 - `.zshrc` - Main Zsh configuration file
 - `.zshenv` - Environment variables
 - `.zprofile` - Login shell configuration
 
 ### Oh My Zsh
+
 - Theme: `robbyrussell`
 - Plugins:
   - git
@@ -56,15 +61,18 @@ To install these dotfiles, follow these steps:
   - zsh-autocomplete
 
 ### Oh My Posh
+
 - Theme: `tokyonight_storm`
 
 ### asdf Version Manager
+
 - Configured with:
   - nodejs (version 23.11.0)
   - python (version 3.11.7)
   - ruby (version 3.2.2)
 
 ### Homebrew
+
 - Formulae:
   - asdf
   - oh-my-posh
@@ -79,6 +87,7 @@ To install these dotfiles, follow these steps:
   - warp
 
 ### Git Configuration
+
 - Basic Git configuration with user information
 
 ## Dependencies
@@ -111,6 +120,7 @@ You can add your own configurations by:
 To keep your environment up to date:
 
 1. Pull the latest changes:
+
    ```bash
    cd ~/dotfiles
    git pull
@@ -131,4 +141,3 @@ This project is open source and available under the [MIT License](LICENSE).
 - [Oh My Posh](https://ohmyposh.dev/)
 - [asdf](https://asdf-vm.com/)
 - [Homebrew](https://brew.sh/)
-
