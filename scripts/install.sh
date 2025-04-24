@@ -79,6 +79,7 @@ install_brew_packages() {
   # Formulae to install
   brew_formulae=(
     asdf
+    aws-vault
     oh-my-posh
     zsh
     zsh-autocomplete
