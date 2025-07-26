@@ -12,6 +12,7 @@ This dotfiles repository includes configurations for:
 - **asdf** - A version manager for multiple languages and tools
 - **Git** - Version control system
 - **Homebrew** - Package manager for macOS
+- **Claude Code** - AI-powered coding assistant with consistent behavior across projects
 
 ## Installation
 
@@ -75,6 +76,7 @@ To install these dotfiles, follow these steps:
 
 - Formulae:
   - asdf
+  - aws-vault
   - oh-my-posh
   - zsh
   - zsh-autocomplete
@@ -89,6 +91,16 @@ To install these dotfiles, follow these steps:
 ### Git Configuration
 
 - Basic Git configuration with user information
+- GPG signing enabled by default
+
+### Claude Code Configuration
+
+- **Global configuration**: Manages Claude Code behavior across all projects
+- **Coding principles**: Universal and language-specific guidelines
+- **Collaboration rules**: Human-AI collaborative problem-solving framework
+- **Configuration files**:
+  - `config/claude/CLAUDE.md` - Project-specific instructions
+  - `config/claude/rules/` - Coding principles and collaboration rules
 
 ## Dependencies
 

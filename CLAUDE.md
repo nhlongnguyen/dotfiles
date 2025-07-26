@@ -31,7 +31,7 @@ source ~/.zshrc
 
 **Installation System (`scripts/install.sh`)**
 - Modular bash script with colored output functions
-- Installs and configures: Homebrew, Oh My Zsh, Oh My Posh, asdf
+- Installs and configures: Homebrew, Oh My Zsh, Oh My Posh, asdf, Claude Code
 - Creates symlinks from `config/` to `$HOME` directory
 - Handles backups of existing files automatically
 - Idempotent - safe to run multiple times
@@ -46,8 +46,14 @@ config/
 │   └── .zshrc.local.template # Template for local configurations
 ├── git/                    # Git configuration
 │   └── .gitconfig          # User info and GPG signing setup
-└── asdf/                   # Version manager
-    └── .tool-versions       # Language runtime versions
+├── asdf/                   # Version manager
+│   └── .tool-versions      # Language runtime versions
+└── claude/                 # Claude Code configuration
+    ├── CLAUDE.md           # Project-specific Claude instructions
+    └── rules/              # Coding principles and collaboration rules
+        ├── collaboration.md
+        ├── general-coding-principles.md
+        └── ruby-coding-principles.md
 ```
 
 **Key Design Patterns**
@@ -141,7 +147,24 @@ Work-specific environment variables are now in `.zshrc.local`:
 ### Git Configuration
 GPG signing is enabled by default with signing key E1A8FD17008F1BAB. Verify GPG setup is working before making signed commits.
 
+### Claude Code Configuration
+
+**Purpose**: Provides consistent Claude Code behavior across different projects by managing global configuration files.
+
+**Key Files:**
+- `config/claude/CLAUDE.md`: Project-specific instructions for Claude Code
+- `config/claude/rules/`: Directory containing coding principles and collaboration rules
+  - `collaboration.md`: Human-AI collaborative problem-solving framework
+  - `general-coding-principles.md`: Universal coding standards and best practices
+  - `ruby-coding-principles.md`: Ruby-specific coding guidelines following Sandi Metz rules
+
+**Setup Process:**
+- Creates symlinks from `config/claude/` to `~/.claude/` directory
+- Preserves existing Claude configuration by creating backups
+- Enables consistent Claude Code behavior across all projects
+
 ### Installation Script Functions
 - `setup_local_config()`: Creates `~/.zshrc.local` from template on first install
 - `create_symlinks()`: Links configuration files from `config/` to home directory
+- `setup_claude_config()`: Creates symlinks for Claude Code configuration
 - Preserves existing local configuration during updates
