@@ -21,6 +21,9 @@ Language-specific rules override general principles when they conflict. Always f
 
 ## Language-Specific Rules
 
+### Python
+@rules/python-coding-principles.md
+
 ### Ruby
 @rules/ruby-coding-principles.md
 

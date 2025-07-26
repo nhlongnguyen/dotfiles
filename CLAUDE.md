@@ -157,6 +157,7 @@ GPG signing is enabled by default with signing key E1A8FD17008F1BAB. Verify GPG 
 - `config/claude/rules/`: Directory containing coding principles and collaboration rules
   - `collaboration.md`: Human-AI collaborative problem-solving framework
   - `general-coding-principles.md`: Universal coding standards and best practices
+  - `python-coding-principles.md`: Python-specific coding guidelines following PEP 8 and best practices
   - `ruby-coding-principles.md`: Ruby-specific coding guidelines following Sandi Metz rules
 
 **Setup Process:**
