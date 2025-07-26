@@ -228,6 +228,33 @@ install_asdf() {
   print_success "asdf configured successfully"
 }
 
+# Setup local configuration
+setup_local_config() {
+  print_section "Setting up local configuration"
+  
+  local local_config_file="$HOME/.zshrc.local"
+  local template_file="$DOTFILES_DIR/config/zsh/.zshrc.local.template"
+  
+  if [ -f "$local_config_file" ]; then
+    print_status "Local configuration file already exists at $local_config_file"
+  else
+    if [ -f "$template_file" ]; then
+      print_status "Creating local configuration file from template..."
+      cp "$template_file" "$local_config_file"
+      print_status "Created $local_config_file from template"
+      print_status "You can now customize $local_config_file with environment-specific settings"
+    else
+      print_status "Creating empty local configuration file..."
+      touch "$local_config_file"
+      echo "# Environment-specific Zsh configuration" > "$local_config_file"
+      echo "# Add your custom settings here" >> "$local_config_file"
+      print_status "Created empty $local_config_file"
+    fi
+  fi
+  
+  print_success "Local configuration setup complete"
+}
+
 # Create symlinks for dotfiles
 create_symlinks() {
   print_section "Creating symlinks for dotfiles"
@@ -268,8 +295,12 @@ main() {
   # Create symlinks
   create_symlinks
   
+  # Setup local configuration
+  setup_local_config
+  
   print_section "Installation complete!"
   print_status "Please restart your terminal or run 'source ~/.zshrc' to apply changes."
+  print_status "Customize ~/.zshrc.local with environment-specific settings as needed."
 }
 
 # Run the main function

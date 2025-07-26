@@ -120,3 +120,13 @@ source $ZSH/oh-my-zsh.sh
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # eval "$(starship init zsh)"
 eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/tokyonight_storm.omp.json)"
+
+# ==============================================================================
+# LOCAL CONFIGURATION
+# ==============================================================================
+# Source local configuration file if it exists
+# This file is not tracked by git and can contain environment-specific settings
+# such as API tokens, work aliases, or machine-specific configurations
+if [[ -f "$HOME/.zshrc.local" ]]; then
+    source "$HOME/.zshrc.local"
+fi

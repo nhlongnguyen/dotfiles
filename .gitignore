@@ -59,3 +59,6 @@ bower_components/
 # Custom files that might contain sensitive information
 config/secrets/
 
+# Environment-specific zsh configuration
+.zshrc.local
+

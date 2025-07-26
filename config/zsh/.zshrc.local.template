@@ -1,0 +1,90 @@
+# .zshrc.local.template
+# 
+# This is a template for environment-specific Zsh configurations.
+# Copy this file to ~/.zshrc.local and customize it for your specific environment.
+# This file will be automatically sourced by .zshrc if it exists.
+#
+# The .zshrc.local file is excluded from version control, so you can safely
+# add sensitive information, work-specific configurations, or machine-specific
+# settings without them being committed to the repository.
+
+# ==============================================================================
+# ENVIRONMENT VARIABLES
+# ==============================================================================
+
+# Example: API tokens and keys (NEVER commit these to version control)
+# export SOME_API_TOKEN="your-secret-token-here"
+# export ANOTHER_API_KEY="your-api-key-here"
+
+# Example: Log levels for specific applications
+# export FASTMCP_LOG_LEVEL=INFO
+# export MCP_LOG_LEVEL=INFO
+# export LOG_LEVEL=INFO
+
+# Example: Application-specific directories
+# export TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache
+
+# ==============================================================================
+# PATH MODIFICATIONS
+# ==============================================================================
+
+# Example: Add custom directories to PATH
+# export PATH="$HOME/custom/bin:$PATH"
+# export PATH="/usr/local/custom/bin:$PATH"
+
+# Example: Database or tool-specific paths
+# export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+
+# ==============================================================================
+# ALIASES
+# ==============================================================================
+
+# Example: Work-specific aliases
+# alias work-server='ssh user@work-server.company.com'
+# alias staging-deploy='kubectl apply -f staging/'
+
+# Example: AWS/Cloud-specific aliases
+# alias dev-bastion='ssh -o TCPKeepAlive=yes -o ServerAliveInterval=10 -A -t user@dev-bastion.company.com'
+# alias prod-bastion='ssh -o TCPKeepAlive=yes -o ServerAliveInterval=10 -A -t user@prod-bastion.company.com'
+
+# Example: Custom commands for your workflow
+# alias myproject='cd ~/Code/important-project && code .'
+# alias logs='tail -f /var/log/application.log'
+
+# ==============================================================================
+# FUNCTIONS
+# ==============================================================================
+
+# Example: Custom functions for your environment
+# work_setup() {
+#     echo "Setting up work environment..."
+#     # Add your setup commands here
+# }
+
+# ==============================================================================
+# CONDITIONAL CONFIGURATIONS
+# ==============================================================================
+
+# Example: Different settings based on hostname or environment
+# if [[ $(hostname) == "work-laptop.local" ]]; then
+#     # Work-specific configurations
+#     export WORK_MODE=true
+# elif [[ $(hostname) == "personal-macbook.local" ]]; then
+#     # Personal configurations
+#     export PERSONAL_MODE=true
+# fi
+
+# ==============================================================================
+# NOTES
+# ==============================================================================
+#
+# Common things to put in .zshrc.local:
+# - API tokens and authentication keys
+# - Work-specific SSH configurations
+# - Company-specific aliases and functions
+# - Machine-specific PATH modifications
+# - Database connection strings
+# - Development environment variables
+# - Personal shortcuts and workflows
+#
+# Remember: This file is not tracked by git, so it's safe for sensitive info!

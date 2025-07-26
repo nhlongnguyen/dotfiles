@@ -1,3 +1,8 @@
 [user]
-	email = nhatlongnguyen1992@gmail.com
+	email = nhat.nguyen@ext.airbnb.com
 	name = Nhat Long Nguyen
+	signingkey = E1A8FD17008F1BAB
+[commit]
+	gpgsign = true
+[gpg]
+	program = /opt/homebrew/bin/gpg

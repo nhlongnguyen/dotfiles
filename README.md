@@ -68,8 +68,8 @@ To install these dotfiles, follow these steps:
 
 - Configured with:
   - nodejs (version 23.11.0)
-  - python (version 3.11.7)
-  - ruby (version 3.2.2)
+  - ruby (version 3.4.3)
+  - terraform (version 1.12.1)
 
 ### Homebrew
 
@@ -97,23 +97,72 @@ To install these dotfiles, follow these steps:
 - Git
 - Internet connection (for downloading packages)
 
+## Environment-Specific Configuration
+
+This dotfiles repository supports environment-specific configurations through a local configuration system. This allows you to have different settings on your work laptop vs. personal laptop without committing sensitive or environment-specific information to version control.
+
+### How It Works
+
+- The main `.zshrc` file automatically sources `~/.zshrc.local` if it exists
+- `.zshrc.local` is excluded from git tracking (via `.gitignore`)
+- The installation script creates this file from a template on first setup
+- You can safely add sensitive information like API tokens, work aliases, and machine-specific configurations
+
+### Setting Up Local Configuration
+
+When you run the installation script, it will:
+
+1. Create `~/.zshrc.local` from the template if it doesn't exist
+2. Provide a template with examples of common environment-specific settings
+3. Allow you to customize this file without affecting the shared dotfiles
+
+### What to Put in .zshrc.local
+
+**Recommended for local configuration:**
+- API tokens and authentication keys
+- Work-specific SSH aliases and bastion hosts
+- Company-specific environment variables
+- Machine-specific PATH modifications
+- Database connection strings
+- Personal shortcuts and aliases
+
+**Example local configuration:**
+```bash
+# Work-specific environment variables
+export COMPANY_API_TOKEN="your-secret-token"
+export WORK_DATABASE_URL="postgresql://..."
+
+# Work aliases
+alias work-server='ssh user@company-server.com'
+alias deploy-staging='kubectl apply -f staging/'
+
+# Custom PATH for work tools
+export PATH="/opt/company-tools/bin:$PATH"
+```
+
 ## Customization
 
 You can customize these dotfiles to suit your needs by:
 
-1. Editing the configuration files in the `config/` directory
-2. Adding your own aliases to `config/zsh/.zshrc`
-3. Changing the Oh My Posh theme by editing the theme reference in `config/zsh/.zshrc`
-4. Adding or removing Homebrew packages by editing `scripts/install.sh`
-5. Adding or changing asdf versions in `config/asdf/.tool-versions`
+1. **Shared configurations**: Edit files in the `config/` directory for settings that should be the same across all your machines
+2. **Environment-specific settings**: Add your machine-specific configurations to `~/.zshrc.local`
+3. **Zsh theme**: Change the Oh My Posh theme by editing the theme reference in `config/zsh/.zshrc`
+4. **Package management**: Add or remove Homebrew packages by editing `scripts/install.sh`
+5. **Language versions**: Update asdf versions in `config/asdf/.tool-versions`
 
 ## Adding Your Own Configurations
 
-You can add your own configurations by:
+### For Shared Configurations
 
-1. Creating new files in the appropriate directories
-2. Adding symlinks in the `scripts/install.sh` script
-3. Optionally adding documentation in the README
+1. Create new configuration files in the appropriate `config/` directories
+2. Add symlinks in the `scripts/install.sh` script
+3. Update documentation as needed
+
+### For Environment-Specific Configurations
+
+1. Add your settings directly to `~/.zshrc.local`
+2. Use the template file as a guide for organization
+3. No need to modify the installation script or commit changes
 
 ## Maintenance
 
@@ -130,6 +179,8 @@ To keep your environment up to date:
    ```bash
    ./scripts/install.sh
    ```
+
+3. Your local configuration (`~/.zshrc.local`) will be preserved during updates
 
 ## License
 
