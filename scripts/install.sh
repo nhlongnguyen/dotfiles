@@ -46,6 +46,12 @@ create_symlink() {
     mv "$target_file" "${target_file}.backup"
   fi
   
+  # Backup existing directory if it's not a symlink
+  if [ -d "$target_file" ] && [ ! -L "$target_file" ]; then
+    print_status "Backing up directory $target_file to ${target_file}.backup"
+    mv "$target_file" "${target_file}.backup"
+  fi
+  
   # Create symlink
   ln -sf "$source_file" "$target_file"
   print_status "Created symlink: $target_file -> $source_file"
