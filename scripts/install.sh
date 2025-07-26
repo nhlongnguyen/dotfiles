@@ -255,6 +255,20 @@ setup_local_config() {
   print_success "Local configuration setup complete"
 }
 
+# Setup Claude configuration
+setup_claude_config() {
+  print_section "Setting up Claude configuration"
+  
+  # Create .claude directory if it doesn't exist
+  mkdir -p "$HOME/.claude"
+  
+  # Create symlinks for Claude configuration
+  create_symlink "$DOTFILES_DIR/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+  create_symlink "$DOTFILES_DIR/config/claude/rules" "$HOME/.claude/rules"
+  
+  print_success "Claude configuration setup complete"
+}
+
 # Create symlinks for dotfiles
 create_symlinks() {
   print_section "Creating symlinks for dotfiles"
@@ -297,6 +311,9 @@ main() {
   
   # Setup local configuration
   setup_local_config
+  
+  # Setup Claude configuration
+  setup_claude_config
   
   print_section "Installation complete!"
   print_status "Please restart your terminal or run 'source ~/.zshrc' to apply changes."
