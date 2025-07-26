@@ -32,7 +32,7 @@ source ~/.zshrc
 **Installation System (`scripts/install.sh`)**
 - Modular bash script with colored output functions
 - Installs and configures: Homebrew, Oh My Zsh, Oh My Posh, asdf, Claude Code
-- Creates symlinks from `config/` to `$HOME` directory
+- Uses hybrid approach: symlinks for universal configs, templates for machine-specific configs
 - Handles backups of existing files automatically
 - Idempotent - safe to run multiple times
 
@@ -45,7 +45,7 @@ config/
 │   ├── .zprofile           # Login shell configuration
 │   └── .zshrc.local.template # Template for local configurations
 ├── git/                    # Git configuration
-│   └── .gitconfig          # User info and GPG signing setup
+│   └── .gitconfig.template # Template for user info and GPG signing setup
 ├── asdf/                   # Version manager
 │   └── .tool-versions      # Language runtime versions
 └── claude/                 # Claude Code configuration
@@ -57,10 +57,11 @@ config/
 ```
 
 **Key Design Patterns**
-- Symlink-based configuration management
+- Hybrid configuration management: symlinks for universal configs, templates for machine-specific configs
 - Modular installation functions with status reporting
 - Separation of shared vs environment-specific configurations
 - Local configuration system for sensitive/machine-specific settings
+- Template-based approach for files that need customization per machine
 - Version pinning for reproducible environments
 
 ### Language Runtime Management
@@ -165,6 +166,8 @@ GPG signing is enabled by default with signing key E1A8FD17008F1BAB. Verify GPG 
 
 ### Installation Script Functions
 - `setup_local_config()`: Creates `~/.zshrc.local` from template on first install
-- `create_symlinks()`: Links configuration files from `config/` to home directory
+- `create_symlinks()`: Links universal configuration files from `config/` to home directory
+- `setup_machine_config()`: Copies machine-specific template files (like git config) for local customization
 - `setup_claude_config()`: Creates symlinks for Claude Code configuration
+- `copy_template()`: Utility function to copy template files only if they don't exist
 - Preserves existing local configuration during updates

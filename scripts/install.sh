@@ -228,6 +228,27 @@ install_asdf() {
   print_success "asdf configured successfully"
 }
 
+# Copy template file to target location
+copy_template() {
+  local template_file="$1"
+  local target_file="$2"
+  local description="$3"
+  
+  if [ -f "$target_file" ]; then
+    print_status "$description already exists at $target_file"
+  else
+    if [ -f "$template_file" ]; then
+      print_status "Creating $description from template..."
+      cp "$template_file" "$target_file"
+      print_status "Created $target_file from template"
+      print_status "You can now customize $target_file with environment-specific settings"
+    else
+      print_error "Template file not found: $template_file"
+      return 1
+    fi
+  fi
+}
+
 # Setup local configuration
 setup_local_config() {
   print_section "Setting up local configuration"
@@ -255,6 +276,16 @@ setup_local_config() {
   print_success "Local configuration setup complete"
 }
 
+# Setup machine-specific configuration files
+setup_machine_config() {
+  print_section "Setting up machine-specific configuration"
+  
+  # Git configuration
+  copy_template "$DOTFILES_DIR/config/git/.gitconfig.template" "$HOME/.gitconfig" "Git configuration"
+  
+  print_success "Machine-specific configuration setup complete"
+}
+
 # Setup Claude configuration
 setup_claude_config() {
   print_section "Setting up Claude configuration"
@@ -273,15 +304,12 @@ setup_claude_config() {
 create_symlinks() {
   print_section "Creating symlinks for dotfiles"
   
-  # Zsh files
+  # Zsh files (symlinked - should be identical across machines)
   create_symlink "$DOTFILES_DIR/config/zsh/.zshrc" "$HOME/.zshrc"
   create_symlink "$DOTFILES_DIR/config/zsh/.zshenv" "$HOME/.zshenv"
   create_symlink "$DOTFILES_DIR/config/zsh/.zprofile" "$HOME/.zprofile"
   
-  # Git config
-  create_symlink "$DOTFILES_DIR/config/git/.gitconfig" "$HOME/.gitconfig"
-  
-  # asdf config
+  # asdf config (symlinked - development tool versions should be consistent)
   create_symlink "$DOTFILES_DIR/config/asdf/.tool-versions" "$HOME/.tool-versions"
   
   print_success "Symlinks created successfully"
@@ -312,12 +340,16 @@ main() {
   # Setup local configuration
   setup_local_config
   
+  # Setup machine-specific configuration
+  setup_machine_config
+  
   # Setup Claude configuration
   setup_claude_config
   
   print_section "Installation complete!"
   print_status "Please restart your terminal or run 'source ~/.zshrc' to apply changes."
   print_status "Customize ~/.zshrc.local with environment-specific settings as needed."
+  print_status "Customize ~/.gitconfig with your personal/work git settings as needed."
 }
 
 # Run the main function

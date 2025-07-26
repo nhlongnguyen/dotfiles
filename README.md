@@ -90,8 +90,10 @@ To install these dotfiles, follow these steps:
 
 ### Git Configuration
 
-- Basic Git configuration with user information
-- GPG signing enabled by default
+- Template-based Git configuration for machine-specific customization
+- Copied from template on first install (not symlinked to avoid conflicts)
+- Safe to customize with work vs personal email addresses
+- Template includes basic user information setup
 
 ### Claude Code Configuration
 
