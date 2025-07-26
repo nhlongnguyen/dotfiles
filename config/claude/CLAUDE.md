@@ -21,11 +21,23 @@ Language-specific rules override general principles when they conflict. Always f
 
 ## Language-Specific Rules
 
+**IMPORTANT**: Only load and apply language-specific rules when working with that specific language or when explicitly requested.
+
 ### Python
-@rules/python-coding-principles.md
+**Apply ONLY when:**
+- Working with Python code (.py files)
+- Explicitly asked for Python guidance
+- Current task involves Python development
+
+Available at: `rules/python-coding-principles.md`
 
 ### Ruby
-@rules/ruby-coding-principles.md
+**Apply ONLY when:**
+- Working with Ruby code (.rb files)
+- Explicitly asked for Ruby guidance
+- Current task involves Ruby development
+
+Available at: `rules/ruby-coding-principles.md`
 
 ## Implementation Guidelines
 
