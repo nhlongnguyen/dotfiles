@@ -39,6 +39,14 @@ Available at: `rules/python-coding-principles.md`
 
 Available at: `rules/ruby-coding-principles.md`
 
+### Go
+**Apply ONLY when:**
+- Working with Go code (.go files)
+- Explicitly asked for Go guidance
+- Current task involves Go development
+
+Available at: `rules/go-coding-principles.md`
+
 ## Implementation Guidelines
 
 ### Rule Application Process

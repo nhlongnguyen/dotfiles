@@ -159,6 +159,7 @@ GPG signing is enabled by default with signing key E1A8FD17008F1BAB. Verify GPG 
   - `general-coding-principles.md`: Universal coding standards and best practices
   - `python-coding-principles.md`: Python-specific coding guidelines following PEP 8 and best practices
   - `ruby-coding-principles.md`: Ruby-specific coding guidelines following Sandi Metz rules
+  - `go-coding-principles.md`: Go-specific coding guidelines following Uber Go Style Guide
 
 **Setup Process:**
 - Creates symlinks from `config/claude/` to `~/.claude/` directory
