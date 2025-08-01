@@ -40,6 +40,12 @@ create_symlink() {
   local source_file="$1"
   local target_file="$2"
   
+  # If target already exists and is a symlink pointing to the same source, skip
+  if [ -L "$target_file" ] && [ "$(readlink "$target_file")" = "$source_file" ]; then
+    print_status "Symlink already exists: $target_file -> $source_file"
+    return 0
+  fi
+  
   # Backup existing file if it's not a symlink
   if [ -f "$target_file" ] && [ ! -L "$target_file" ]; then
     print_status "Backing up $target_file to ${target_file}.backup"
@@ -50,6 +56,11 @@ create_symlink() {
   if [ -d "$target_file" ] && [ ! -L "$target_file" ]; then
     print_status "Backing up directory $target_file to ${target_file}.backup"
     mv "$target_file" "${target_file}.backup"
+  fi
+  
+  # Remove existing symlink if it exists (even if pointing to different location)
+  if [ -L "$target_file" ]; then
+    rm "$target_file"
   fi
   
   # Create symlink
@@ -302,6 +313,7 @@ setup_claude_config() {
   # Create symlinks for Claude configuration
   create_symlink "$DOTFILES_DIR/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
   create_symlink "$DOTFILES_DIR/config/claude/rules" "$HOME/.claude/rules"
+  create_symlink "$DOTFILES_DIR/config/claude/agents" "$HOME/.claude/agents"
   
   print_success "Claude configuration setup complete"
 }

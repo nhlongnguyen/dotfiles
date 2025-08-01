@@ -50,10 +50,15 @@ config/
 │   └── .tool-versions      # Language runtime versions
 └── claude/                 # Claude Code configuration
     ├── CLAUDE.md           # Project-specific Claude instructions
-    └── rules/              # Coding principles and collaboration rules
-        ├── collaboration.md
-        ├── general-coding-principles.md
-        └── ruby-coding-principles.md
+    ├── rules/              # Coding principles and collaboration rules
+    │   ├── collaboration.md
+    │   ├── general-coding-principles.md
+    │   ├── go-coding-principles.md
+    │   ├── python-coding-principles.md
+    │   └── ruby-coding-principles.md
+    └── agents/             # Specialized coding expert agents
+        ├── golang-coding-expert.md
+        └── ruby-coding-expert.md
 ```
 
 **Key Design Patterns**
@@ -160,16 +165,20 @@ GPG signing is enabled by default with signing key E1A8FD17008F1BAB. Verify GPG 
   - `python-coding-principles.md`: Python-specific coding guidelines following PEP 8 and best practices
   - `ruby-coding-principles.md`: Ruby-specific coding guidelines following Sandi Metz rules
   - `go-coding-principles.md`: Go-specific coding guidelines following Uber Go Style Guide
+- `config/claude/agents/`: Directory containing specialized coding expert agents
+  - `golang-coding-expert.md`: Go language specialist for focused Go development assistance
+  - `ruby-coding-expert.md`: Ruby language specialist for focused Ruby development assistance
 
 **Setup Process:**
 - Creates symlinks from `config/claude/` to `~/.claude/` directory
 - Preserves existing Claude configuration by creating backups
 - Enables consistent Claude Code behavior across all projects
+- Provides access to specialized coding agents for language-specific expertise
 
 ### Installation Script Functions
 - `setup_local_config()`: Creates `~/.zshrc.local` from template on first install
 - `create_symlinks()`: Links universal configuration files from `config/` to home directory
 - `setup_machine_config()`: Copies machine-specific template files (like git config) for local customization
-- `setup_claude_config()`: Creates symlinks for Claude Code configuration
+- `setup_claude_config()`: Creates symlinks for Claude Code configuration including agents
 - `copy_template()`: Utility function to copy template files only if they don't exist
 - Preserves existing local configuration during updates

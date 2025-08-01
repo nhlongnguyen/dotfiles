@@ -100,9 +100,11 @@ To install these dotfiles, follow these steps:
 - **Global configuration**: Manages Claude Code behavior across all projects
 - **Coding principles**: Universal and language-specific guidelines
 - **Collaboration rules**: Human-AI collaborative problem-solving framework
+- **Custom agents**: Specialized coding experts for specific languages
 - **Configuration files**:
   - `config/claude/CLAUDE.md` - Project-specific instructions
   - `config/claude/rules/` - Coding principles and collaboration rules
+  - `config/claude/agents/` - Specialized coding expert agents
 
 ## Dependencies
 
