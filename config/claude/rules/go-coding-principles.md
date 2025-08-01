@@ -1,5 +1,126 @@
 # Go Coding Principles
 
+## Uber Go Style Guide Rules
+
+### Rule 1: Functions should be no longer than 50 lines
+Keep functions focused and readable. Extract complex logic into smaller functions.
+
+```go
+// Good - Under 50 lines, focused responsibility
+func processUser(ctx context.Context, userID string) error {
+    user, err := fetchUser(ctx, userID)
+    if err != nil {
+        return fmt.Errorf("fetch user %q: %w", userID, err)
+    }
+    
+    if err := validateUser(user); err != nil {
+        return fmt.Errorf("validate user %q: %w", userID, err)
+    }
+    
+    if err := updateUserStatus(ctx, user); err != nil {
+        return fmt.Errorf("update user status: %w", err)
+    }
+    
+    return nil
+}
+
+// Good - Complex logic extracted to separate functions
+func calculateUserScore(user *User) (float64, error) {
+    activityScore, err := calculateActivityScore(user)
+    if err != nil {
+        return 0, err
+    }
+    
+    engagementScore := calculateEngagementScore(user)
+    bonusScore := calculateBonusScore(user)
+    
+    return (activityScore * 0.5) + (engagementScore * 0.3) + (bonusScore * 0.2), nil
+}
+```
+
+### Rule 2: Structs should be no longer than 200 lines
+Split large structs into smaller, focused types. Use composition over embedding for complex relationships.
+
+```go
+// Good - Under 200 lines, single responsibility
+type User struct {
+    ID        string
+    Name      string
+    Email     string
+    CreatedAt time.Time
+    UpdatedAt time.Time
+    Active    bool
+}
+
+func NewUser(name, email string) *User {
+    now := time.Now()
+    return &User{
+        ID:        generateUserID(),
+        Name:      name,
+        Email:     email,
+        CreatedAt: now,
+        UpdatedAt: now,
+        Active:    true,
+    }
+}
+
+// Good - Separate concerns into different types
+type UserValidator struct {}
+
+func (v *UserValidator) ValidateEmail(email string) error {
+    if !strings.Contains(email, "@") {
+        return errors.New("invalid email format")
+    }
+    return nil
+}
+```
+
+### Rule 3: Use no more than 4 parameters in function signatures
+Use structs or configuration objects for multiple related parameters.
+
+```go
+// Good - 4 parameters max
+func CreateUser(name, email, role string, active bool) (*User, error) {
+    return &User{
+        ID:        generateUserID(),
+        Name:      name,
+        Email:     email,
+        Role:      role,
+        Active:    active,
+        CreatedAt: time.Now(),
+    }, nil
+}
+
+// Good - Use struct for related parameters
+type UserConfig struct {
+    Name       string
+    Email      string
+    Role       string
+    Active     bool
+    Department string
+    Manager    string
+}
+
+func CreateUserFromConfig(config UserConfig) (*User, error) {
+    user := &User{
+        ID:         generateUserID(),
+        Name:       config.Name,
+        Email:      config.Email,
+        Role:       config.Role,
+        Active:     config.Active,
+        Department: config.Department,
+        Manager:    config.Manager,
+        CreatedAt:  time.Now(),
+    }
+    return user, nil
+}
+```
+
+### Rule Zero: Exception Rule
+**"Break these rules only when you have a good reason and document it clearly."**
+
+Document exceptions clearly with approval and reasoning.
+
 ## Fundamental Principles
 
 ### Follow Standard Go Practices as Foundation
@@ -1195,15 +1316,16 @@ mcp__context7__get-library-docs --library-id="/google/styleguide" --topic="API d
 
 ## Key Takeaways
 
-1. **Follow standard Go practices** with gofmt, Effective Go, and go vet
-2. **Wrap errors for context** - don't log and return
-3. **Organize functions logically** - types, constructors, methods, utilities
-4. **Keep interfaces small** and accept interfaces, return concrete types
-5. **Use field names in struct literals** for clarity
-6. **Pre-allocate slice capacity** when size is known
-7. **Return early** to reduce nesting and improve readability
-8. **Use atomic operations** for concurrent access patterns
-9. **Use Context7** for additional guidance beyond this document
+1. **Follow Uber Go Style Guide rules** as structural constraints
+2. **Choose the right approach** - structs for entities, functions for transformations, interfaces for services
+3. **Handle errors properly** - use specific error types and proper wrapping
+4. **Write descriptive tests** that focus on behavior, not implementation
+5. **Use Go idioms** - channels, goroutines, and built-in functions effectively
+6. **Organize code logically** - clear package structure and import organization
+7. **Use tools** - golangci-lint, go vet, and other Go tooling for code quality
+8. **Avoid anti-patterns** - panic for errors, ignoring errors, global variables
+9. **Be idiomatic** - write Go code that feels natural to Go developers
+10. **Use Context7** for additional guidance beyond this document
 
 > "Clarity is better than cleverness." - Go Proverbs
 

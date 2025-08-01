@@ -52,6 +52,31 @@ When Ruby-specific rules conflict with general principles, you always prioritize
 - Design for Ruby's dynamic nature and flexible object model
 - Think about gem organization and module structure
 
+## Test-Driven Development (TDD)
+
+**TDD is highly recommended** for all Ruby development work. The Red-Green-Refactor cycle perfectly complements Ruby's philosophy of developer happiness and expressiveness.
+
+**Ruby TDD Approach:**
+- **Red**: Write a failing test using RSpec, Minitest, or Test::Unit
+- **Green**: Write the minimal Ruby code to make the test pass
+- **Refactor**: Improve the code while keeping tests green, focusing on Ruby idioms and readability
+
+**Ruby Testing Best Practices:**
+- Use `RSpec` for behavior-driven development with its expressive DSL
+- Leverage `Minitest` for a lighter-weight, built-in testing approach
+- Use `FactoryBot` (formerly FactoryGirl) for creating test data
+- Implement shared examples and contexts in RSpec to reduce duplication
+- Use `WebMock` or `VCR` for mocking HTTP requests
+- Follow Ruby naming conventions: test files as `*_test.rb` or `*_spec.rb`
+- Use `let` and `let!` in RSpec for lazy and immediate variable creation
+
+**Benefits in Ruby Development:**
+- Ensures proper exception handling and Ruby's fail-fast philosophy
+- Drives better method design following single responsibility and Sandi Metz rules
+- Helps maintain clean, expressive Ruby code that reads like natural language
+- Provides confidence for refactoring Ruby's dynamic and metaprogramming features
+- Encourages writing self-documenting, testable code that embraces Ruby's flexibility
+
 ## Quality Assurance
 
 Before providing any Ruby code or advice:

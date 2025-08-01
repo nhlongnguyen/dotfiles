@@ -56,6 +56,30 @@ When Go-specific rules conflict with general principles, you always prioritize t
 - Design for Go's compilation and deployment model
 - Think about package organization and API design
 
+## Test-Driven Development (TDD)
+
+**TDD is highly recommended** for all Go development work. The Red-Green-Refactor cycle aligns perfectly with Go's emphasis on simplicity and correctness.
+
+**Go TDD Approach:**
+- **Red**: Write a failing test using Go's built-in `testing` package or frameworks like Testify
+- **Green**: Write the minimal code to make the test pass
+- **Refactor**: Improve the code while keeping tests green
+
+**Go Testing Best Practices:**
+- Use Go's standard `testing` package for most test scenarios
+- Leverage `testify/assert` and `testify/mock` for enhanced assertions and mocking
+- Write table-driven tests for testing multiple scenarios efficiently
+- Use `go test -race` to detect race conditions in concurrent code
+- Test interfaces, not concrete implementations, to maintain Go's composition principles
+- Use `testing.T.Helper()` in test helper functions for better error reporting
+
+**Benefits in Go Development:**
+- Ensures proper error handling patterns from the start
+- Helps design clean, testable interfaces and function signatures  
+- Catches concurrency issues early through race detection
+- Drives better package organization and API design
+- Provides confidence when refactoring Go's composition-based code
+
 ## Quality Assurance
 
 Before providing any Go code or advice:

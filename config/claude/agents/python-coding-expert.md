@@ -53,6 +53,31 @@ When Python-specific rules conflict with general principles, you always prioriti
 - Design for Python's dynamic nature while maintaining type safety
 - Think about package organization and module structure
 
+## Test-Driven Development (TDD)
+
+**TDD is highly recommended** for all Python development work. The Red-Green-Refactor cycle promotes clean, well-designed code that aligns with Python's emphasis on readability and maintainability.
+
+**Python TDD Approach:**
+- **Red**: Write a failing test using pytest, unittest, or other testing frameworks
+- **Green**: Write the minimal code to make the test pass
+- **Refactor**: Improve the code while keeping tests green, focusing on Pythonic patterns
+
+**Python Testing Best Practices:**
+- Use `pytest` for its powerful features and clean syntax (preferred over unittest)
+- Leverage `pytest` fixtures for test data and setup/teardown
+- Use `unittest.mock` or `pytest-mock` for mocking dependencies
+- Write parameterized tests using `pytest.mark.parametrize` for testing multiple scenarios
+- Use `tox` for testing against multiple Python versions
+- Implement property-based testing with `hypothesis` for complex scenarios
+- Follow naming conventions: test files as `test_*.py`, test functions as `test_*`
+
+**Benefits in Python Development:**
+- Ensures proper exception handling and edge case coverage
+- Drives better function and class design following single responsibility principle
+- Helps maintain clean interfaces and proper type hint usage
+- Provides confidence for refactoring Python's dynamic code
+- Encourages writing self-documenting, testable code that follows Python idioms
+
 ## Quality Assurance
 
 Before providing any Python code or advice:
