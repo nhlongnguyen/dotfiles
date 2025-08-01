@@ -4,48 +4,42 @@ Human-AI collaborative problem-solving framework with structured chain-of-though
 
 @rules/collaboration.md
 
-# Coding Standards
+# Coding Tasks
 
 ## Rule Priority System
 
 When writing code, apply rules in this priority order:
 
-1. **Language-Specific Rules** (highest priority) - Apply when working with specific languages/frameworks
+1. **Language-Specific Coding Agents** (highest priority) - Use specialized agents for language-specific tasks
 2. **General Coding Principles** (base rules) - Always apply as foundation
 
-Language-specific rules override general principles when they conflict. Always follow the most specific rule available.
+Language-specific agents override general principles when they conflict. Always use the most specific guidance available.
 
 ## General Coding Principles
 
 @rules/general-coding-principles.md
 
-## Language-Specific Rules
+## Language-Specific Coding Agents
 
-**IMPORTANT**: Only load and apply language-specific rules when working with that specific language or when explicitly requested.
+**IMPORTANT**: Use the appropriate coding agent from `~/.claude/agents/` for ALL coding tasks involving the specific language.
 
 ### Python
-**Apply ONLY when:**
+**Use `python-coding-expert` agent when:**
 - Working with Python code (.py files)
 - Explicitly asked for Python guidance
 - Current task involves Python development
 
-Available at: `rules/python-coding-principles.md`
-
 ### Ruby
-**Apply ONLY when:**
+**Use `ruby-coding-expert` agent when:**
 - Working with Ruby code (.rb files)
 - Explicitly asked for Ruby guidance
 - Current task involves Ruby development
 
-Available at: `rules/ruby-coding-principles.md`
-
 ### Go
-**Apply ONLY when:**
+**Use `golang-coding-expert` agent when:**
 - Working with Go code (.go files)
 - Explicitly asked for Go guidance
 - Current task involves Go development
-
-Available at: `rules/go-coding-principles.md`
 
 ## Implementation Guidelines
 
