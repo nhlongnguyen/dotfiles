@@ -170,13 +170,13 @@ Or show clear error messages for any failures.
 
 ```bash
 # Create PR with automatic title from commits
-/global:community:create-pull-request
+/create-pull-request
 
 # Create PR with custom title
-/global:community:create-pull-request "Add user authentication feature"
+/create-pull-request "Add user authentication feature"
 
 # Create PR with multi-word title
-/global:community:create-pull-request Fix bug in payment processing
+/create-pull-request Fix bug in payment processing
 ```
 
 **Expected Workflow:**
