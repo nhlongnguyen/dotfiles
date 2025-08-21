@@ -62,3 +62,4 @@ config/secrets/
 # Environment-specific zsh configuration
 .zshrc.local
 
+config/claude/agents/global

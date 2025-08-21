@@ -318,6 +318,23 @@ setup_claude_config() {
   print_success "Claude configuration setup complete"
 }
 
+# Setup Claude commands
+setup_claude_commands() {
+  print_section "Setting up Claude commands"
+  
+  # Create .claude directory if it doesn't exist
+  mkdir -p "$HOME/.claude"
+  
+  # Create symlink for Claude commands directory if it exists
+  if [ -d "$DOTFILES_DIR/config/claude/commands" ]; then
+    create_symlink "$DOTFILES_DIR/config/claude/commands" "$HOME/.claude/commands"
+    print_success "Claude commands setup complete"
+  else
+    print_status "No commands directory found at $DOTFILES_DIR/config/claude/commands"
+    print_status "You can create this directory and add custom Claude commands later"
+  fi
+}
+
 # Create symlinks for dotfiles
 create_symlinks() {
   print_section "Creating symlinks for dotfiles"
@@ -363,6 +380,9 @@ main() {
   
   # Setup Claude configuration
   setup_claude_config
+  
+  # Setup Claude commands
+  setup_claude_commands
   
   print_section "Installation complete!"
   print_status "Please restart your terminal or run 'source ~/.zshrc' to apply changes."
