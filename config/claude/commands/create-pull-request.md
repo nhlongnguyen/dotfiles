@@ -59,19 +59,21 @@ Follow these steps in order:
    - Or generate from branch name if commit message is generic
    - Clean up the title to be PR-appropriate
 
-6. **Analyze Branch Changes** (for comprehensive PR body)
-   - Use Bash tool: `git log main..HEAD --pretty=format:"- %s (%h)" --reverse` (commit summaries)
-   - Use Bash tool: `git diff --stat main..HEAD` (file change statistics)
-   - Use Bash tool: `git diff --name-only main..HEAD | cut -d'/' -f1 | sort -u | tr '\n' ', ' | sed 's/,$//'` (affected areas/modules)
-   - Use Bash tool: `git diff --name-status main..HEAD` (file modification types)
+6. **Analyze Staged Changes** (for comprehensive PR body)
+   - Use Bash tool: `git diff --staged` (get all staged changes)
+   - Use Task tool with general-purpose agent: Analyze the staged changes and generate a concise summary (200-300 words) describing:
+     - What functionality was added, modified, or removed
+     - The purpose and benefits of these changes
+     - Any important technical details or considerations
+     - Impact on existing functionality
+   - Use the generated summary as the main content for the PR description
 
 7. **Create PR Body**
    - Start with the template (project or fallback)
-   - If using fallback template, enhance with detailed analysis:
-     - Fill "In this PR:" section with commit summaries from step 5
-     - Add "Files Changed" section with statistics
-     - Add "Areas Affected" section with modules/directories
-     - Include modification summary (added/modified/deleted files)
+   - If using fallback template, enhance with the generated summary:
+     - Fill "In this PR:" section with the generated summary from step 6
+     - Replace template placeholders with the analyzed content
+     - Keep the template structure but populate it with meaningful content
 
 8. **Create Pull Request**
    - Use Bash tool: `gh pr create --title "TITLE" --body "BODY" --base MAIN_BRANCH`
@@ -86,15 +88,7 @@ If no project template is found, use this comprehensive template:
 # Description
 
 ## In this PR:
-- [Automatically filled from commits or manual description]
-
-## Files Changed:
-```
-[Automatically filled with git diff --stat output]
-```
-
-## Areas Affected:
-[Automatically filled with affected modules/directories]
+[Automatically filled with AI-generated summary from staged changes analysis]
 
 ## Why this change:
 - [Brief explanation of the motivation]

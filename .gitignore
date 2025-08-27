@@ -63,3 +63,4 @@ config/secrets/
 .zshrc.local
 
 config/claude/agents/global
+config/claude/commands/global
