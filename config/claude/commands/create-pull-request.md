@@ -17,6 +17,7 @@ This command automates the pull request creation process by:
 Arguments: $ARGUMENTS
 - If provided, use as the PR title
 - If empty, generate title from recent commits or branch name
+- Support --ticket-url flag to include ticket reference in PR description
 </context>
 
 <instructions>
@@ -54,10 +55,14 @@ Follow these steps in order:
    - If found, use the existing template content
    - If not found, use the fallback template below
 
-5. **Generate PR Title** (if $ARGUMENTS is empty)
-   - Use Bash tool: `git log --oneline -1 --pretty=format:"%s"`
-   - Or generate from branch name if commit message is generic
-   - Clean up the title to be PR-appropriate
+5. **Parse Arguments and Generate PR Title**
+   - Parse $ARGUMENTS to extract --ticket-url flag and PR title
+   - If ticket URL provided, store for use in PR body
+   - If title provided (non-flag arguments), use as PR title
+   - If no title provided, generate from recent commits:
+     - Use Bash tool: `git log --oneline -1 --pretty=format:"%s"`
+     - Or generate from branch name if commit message is generic
+     - Clean up the title to be PR-appropriate
 
 6. **Analyze Staged Changes** (for comprehensive PR body)
    - Use Bash tool: `git diff --staged` (get all staged changes)
@@ -72,6 +77,7 @@ Follow these steps in order:
    - Start with the template (project or fallback)
    - If using fallback template, enhance with the generated summary:
      - Fill "In this PR:" section with the generated summary from step 6
+     - Add ticket URL to References section if --ticket-url flag was provided
      - Replace template placeholders with the analyzed content
      - Keep the template structure but populate it with meaningful content
 
@@ -85,43 +91,12 @@ Follow these steps in order:
 If no project template is found, use this comprehensive template:
 
 ```markdown
-# Description
+## Description
 
-## In this PR:
 [Automatically filled with AI-generated summary from staged changes analysis]
 
-## Why this change:
-- [Brief explanation of the motivation]
-
-## References:
-- Issue: #[issue_number]
-- Related PRs: #[pr_number]
-
-# Testing & Deployment
-
-## Testing completed:
-- [ ] Unit tests pass
-- [ ] Integration tests pass  
-- [ ] Manual testing completed
-- [ ] Code review completed
-
-## Deployment considerations:
-- [ ] Database migrations (if any)
-- [ ] Configuration changes (if any)
-- [ ] Dependencies updated (if any)
-- [ ] Breaking changes documented (if any)
-
-# Monitoring & Alerting
-
-## Post-deployment verification:
-- [ ] Feature works as expected
-- [ ] No new errors in logs
-- [ ] Performance metrics stable
-- [ ] Monitoring alerts configured (if needed)
-
-## Rollback plan:
-- [ ] Rollback procedure documented
-- [ ] Rollback tested (if applicable)
+## References
+- Ticket: [Automatically filled with --ticket-url if provided]
 ```
 </fallback_template>
 
@@ -169,8 +144,11 @@ Or show clear error messages for any failures.
 # Create PR with custom title
 /create-pull-request "Add user authentication feature"
 
-# Create PR with multi-word title
-/create-pull-request Fix bug in payment processing
+# Create PR with ticket URL
+/create-pull-request --ticket-url https://company.atlassian.net/browse/PROJ-123
+
+# Create PR with both title and ticket URL
+/create-pull-request "Fix user authentication bug" --ticket-url https://company.atlassian.net/browse/PROJ-456
 ```
 
 **Expected Workflow:**
