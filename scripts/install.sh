@@ -314,6 +314,7 @@ setup_claude_config() {
   create_symlink "$DOTFILES_DIR/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
   create_symlink "$DOTFILES_DIR/config/claude/rules" "$HOME/.claude/rules"
   create_symlink "$DOTFILES_DIR/config/claude/agents" "$HOME/.claude/agents"
+  create_symlink "$DOTFILES_DIR/config/claude/skills" "$HOME/.claude/skills"
   
   print_success "Claude configuration setup complete"
 }

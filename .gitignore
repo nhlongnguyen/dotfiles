@@ -64,3 +64,4 @@ config/secrets/
 
 config/claude/agents/global
 config/claude/commands/global
+config/claude/skills/ht-*
