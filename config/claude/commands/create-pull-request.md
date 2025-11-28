@@ -64,22 +64,23 @@ Follow these steps in order:
      - Or generate from branch name if commit message is generic
      - Clean up the title to be PR-appropriate
 
-6. **Analyze Staged Changes** (for comprehensive PR body)
-   - Use Bash tool: `git diff --staged` (get all staged changes)
-   - Use Task tool with general-purpose agent: Analyze the staged changes and generate a concise summary (200-300 words) describing:
-     - What functionality was added, modified, or removed
-     - The purpose and benefits of these changes
-     - Any important technical details or considerations
-     - Impact on existing functionality
-   - Use the generated summary as the main content for the PR description
+6. **Analyze Staged Changes** (for concise PR body)
+   - Use Task tool with general-purpose agent:
+     - Run `git diff --staged` to get all staged changes
+     - Analyze the staged changes and generate a brief summary as bullet points:
+       - Create 2-4 concise bullet points describing what was changed
+       - Keep each bullet point simple and factual
+       - Avoid unnecessary detail, technical jargon, or elaborate explanations
+       - Focus only on the essential changes made
+   - Use the generated bullet points as the main content for the PR description
 
 7. **Create PR Body**
    - Start with the template (project or fallback)
    - If using fallback template, enhance with the generated summary:
-     - Fill "In this PR:" section with the generated summary from step 6
+     - Fill "Description" section with the bullet points from step 6
      - Add ticket URL to References section if --ticket-url flag was provided
-     - Replace template placeholders with the analyzed content
-     - Keep the template structure but populate it with meaningful content
+     - Keep descriptions concise and avoid unnecessary noise
+     - Template structure should be minimal and focused
 
 8. **Create Pull Request**
    - Use Bash tool: `gh pr create --title "TITLE" --body "BODY" --base MAIN_BRANCH`
@@ -93,7 +94,7 @@ If no project template is found, use this comprehensive template:
 ```markdown
 ## Description
 
-[Automatically filled with AI-generated summary from staged changes analysis]
+[Automatically filled with concise bullet points from staged changes analysis]
 
 ## References
 - Ticket: [Automatically filled with --ticket-url if provided]
