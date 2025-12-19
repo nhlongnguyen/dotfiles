@@ -86,7 +86,7 @@ Use this skill for any Ruby-related programming task:
    - Single Responsibility Principle adherence
 
 4. **Check for Ruby-specific issues**
-   - Prefer `&&`/`||` over `and`/`or` in conditions
+   - Prefer && and || operators over `and`/`or` keywords in conditions
    - Use guard clauses instead of nested conditionals
    - Verify proper exception handling patterns
    - Check for proper use of blocks and iterators
@@ -115,9 +115,9 @@ Use this skill for any Ruby-related programming task:
 - `snake_case` for methods, variables, symbols, files
 - `CamelCase` for classes and modules
 - `SCREAMING_SNAKE_CASE` for constants
-- End predicates with `?` (e.g., `empty?`, `valid?`)
-- End dangerous methods with `!` when safe version exists
-- Avoid `get_`/`set_`/`is_` prefixes
+- End predicates with ? suffix (e.g., `empty?`, `valid?`)
+- End dangerous/mutating methods with bang suffix (!) when a safe version exists
+- Avoid get_/set_/is_ prefixes
 
 ### Formatting
 - 2 spaces for indentation (no tabs)
@@ -136,7 +136,7 @@ Use this skill for any Ruby-related programming task:
 ### Collections & Iteration
 - Prefer `map`/`select`/`reduce` over `each` with mutation
 - Use `%w[]` for word arrays, `%i[]` for symbol arrays
-- Use `Hash#fetch` with defaults instead of `||`
+- Use `Hash#fetch` with defaults instead of || operator
 - Prefer `first`/`last` over `[0]`/`[-1]`
 
 ### Strings
@@ -170,12 +170,7 @@ For detailed code patterns, examples, and guidelines, consult the reference file
   - Test organization and structure
   - Mocking and stubbing guidelines
 
-Use grep to search these files for specific patterns when needed:
-```bash
-grep -r "guard clause" references/
-grep -r "keyword arguments" references/ruby-patterns.md
-grep -r "let vs before" references/testing-patterns.md
-```
+Use grep to search these files for specific patterns when needed (e.g., search for "guard clause", "keyword arguments", or "let vs before").
 
 ## Template Assets
 
@@ -195,10 +190,10 @@ Before delivering Ruby code, verify:
 **Critical Ruby Style Rules:**
 - [ ] 2-space indentation (no tabs)
 - [ ] snake_case for methods/variables, CamelCase for classes
-- [ ] Predicates end with `?`, dangerous methods with `!`
+- [ ] Predicates end with ? suffix, dangerous methods with ! suffix
 - [ ] No explicit `return` unless required for early exit
 - [ ] No explicit `self` unless required (setters, disambiguation)
-- [ ] `&&`/`||` for boolean logic (not `and`/`or`)
+- [ ] Use && and || for boolean logic (not `and`/`or`)
 - [ ] Guard clauses instead of nested conditionals
 - [ ] Iterators (`map`, `select`, `reduce`) over `for` loops
 
@@ -218,14 +213,14 @@ Before delivering Ruby code, verify:
 **Ruby Idioms:**
 - [ ] Duck typing preferred over type checking
 - [ ] String interpolation over concatenation
-- [ ] `Hash#fetch` with defaults over `||`
-- [ ] `%w[]` and `%i[]` for word/symbol arrays
+- [ ] Use `Hash#fetch` with defaults over || operator
+- [ ] Use `%w[]` and `%i[]` for word/symbol arrays
 - [ ] Blocks use `{}` for single-line, `do...end` for multi-line
 
 **Testing:**
 - [ ] One assertion per test (when possible)
 - [ ] Descriptive test names (`it "returns nil when user not found"`)
-- [ ] Proper use of `let`/`let!` vs `before` in RSpec
+- [ ] Proper use of let/let! vs before in RSpec
 - [ ] Test edge cases and error conditions
 
 ## Communication Guidelines
