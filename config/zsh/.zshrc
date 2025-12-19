@@ -79,10 +79,6 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git
   asdf
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  fast-syntax-highlighting
-  zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
