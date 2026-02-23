@@ -53,11 +53,9 @@ config/
     ├── rules/              # Coding principles and collaboration rules
     │   ├── collaboration.md
     │   ├── general-coding-principles.md
-    │   ├── go-coding-principles.md
-    │   ├── python-coding-principles.md
-    │   └── ruby-coding-principles.md
     └── agents/             # Specialized coding expert agents
         ├── golang-coding-expert.md
+        ├── python-coding-expert.md
         └── ruby-coding-expert.md
 ```
 
@@ -162,12 +160,10 @@ GPG signing is enabled by default with signing key E1A8FD17008F1BAB. Verify GPG 
 - `config/claude/rules/`: Directory containing coding principles and collaboration rules
   - `collaboration.md`: Human-AI collaborative problem-solving framework
   - `general-coding-principles.md`: Universal coding standards and best practices
-  - `python-coding-principles.md`: Python-specific coding guidelines following PEP 8 and best practices
-  - `ruby-coding-principles.md`: Ruby-specific coding guidelines following Sandi Metz rules
-  - `go-coding-principles.md`: Go-specific coding guidelines following Uber Go Style Guide
 - `config/claude/agents/`: Directory containing specialized coding expert agents
   - `golang-coding-expert.md`: Go language specialist for focused Go development assistance
   - `ruby-coding-expert.md`: Ruby language specialist for focused Ruby development assistance
+  - `python-coding-expert.md`: Python language specialist for focused Python development assistance
 
 **Setup Process:**
 - Creates symlinks from `config/claude/` to `~/.claude/` directory
