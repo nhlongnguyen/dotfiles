@@ -32,6 +32,12 @@ command_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
+# Check if a macOS app bundle is installed (regardless of how it was installed)
+app_installed() {
+  local app_name="$1"
+  [ -d "/Applications/${app_name}.app" ] || [ -d "$HOME/Applications/${app_name}.app" ]
+}
+
 # Get the directory of the script
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
@@ -92,7 +98,7 @@ install_homebrew() {
 # Install Homebrew packages
 install_brew_packages() {
   print_section "Installing Homebrew packages"
-  
+
   # Formulae to install
   brew_formulae=(
     asdf
@@ -103,41 +109,45 @@ install_brew_packages() {
     zsh-autosuggestions
     zsh-syntax-highlighting
   )
-  
-  # Casks to install
-  brew_casks=(
-    cursor
-    docker
-    visual-studio-code
-    warp
+
+  # Casks mapped to their .app bundle names for reliable detection
+  # (catches apps installed via direct download, not just via Homebrew)
+  declare -A brew_casks=(
+    [cursor]="Cursor"
+    [docker]="Docker"
+    [visual-studio-code]="Visual Studio Code"
+    [warp]="Warp"
   )
-  
+
   # Update Homebrew
   print_status "Updating Homebrew..."
   brew update
-  
-  # Install formulae
+
+  # Install formulae — check brew list first, then fall back to command_exists
+  # to catch tools installed outside Homebrew (e.g. asdf via official installer)
   print_status "Installing Homebrew formulae..."
   for formula in "${brew_formulae[@]}"; do
-    if brew list "$formula" &>/dev/null; then
+    if brew list "$formula" &>/dev/null || command_exists "$formula"; then
       print_status "$formula is already installed"
     else
       print_status "Installing $formula..."
       brew install "$formula"
     fi
   done
-  
-  # Install casks
+
+  # Install casks — check .app bundle existence first to catch apps installed
+  # via direct download, then fall back to brew list as a secondary check
   print_status "Installing Homebrew casks..."
-  for cask in "${brew_casks[@]}"; do
-    if brew list --cask "$cask" &>/dev/null; then
+  for cask in "${!brew_casks[@]}"; do
+    app_name="${brew_casks[$cask]}"
+    if app_installed "$app_name" || brew list --cask "$cask" &>/dev/null; then
       print_status "$cask is already installed"
     else
       print_status "Installing $cask..."
       brew install --cask "$cask"
     fi
   done
-  
+
   print_success "Homebrew packages installed successfully"
 }
 
